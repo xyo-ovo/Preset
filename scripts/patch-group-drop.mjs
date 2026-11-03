@@ -1,5 +1,6 @@
 /**
  * PMM_GROUP_DROP_POSITION_V29812
+ * trigger: 2.98.62
  *
  * 问题：分组跨面板拖到某个条目上时，j() 里只要目标条目属于某个 section，
  * 就会传 { mergeIntoSection:true } → handleCrossPanelDrop 里
