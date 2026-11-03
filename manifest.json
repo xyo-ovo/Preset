@@ -1,15 +1,1 @@
-{
-  "display_name": "🧩预设工坊",
-  "loading_order": 110,
-  "requires": [],
-  "optional": [],
-  "js": "dist/index.js",
-  "author": "kookt",
-  "version": "2.98.60",
-  "homePage": "https://github.com/yui-ovo/ST-Preset-Workshop",
-  "auto_update": true,
-  "hooks": {
-    "update": "onUpdate"
-  },
-  "minimum_client_version": "1.12.13"
-}
+{"author":"kookt","auto_update":true,"display_name":"🧩预设工坊","homePage":"https://github.com/yui-ovo/ST-Preset-Workshop","hooks":{"update":"onUpdate"},"js":"dist/index.js","loading_order":110,"minimum_client_version":"1.12.13","optional":[],"requires":[],"version":"2.98.61"}
