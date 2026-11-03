@@ -1,6 +1,6 @@
-import { readWorkshopMode, installWorkshopModeSettings } from './workshop-mode.js?v=2.98.60';
+import { readWorkshopMode, installWorkshopModeSettings } from './workshop-mode.js?v=2.98.62';
 const EXTENSION_NAME = '🧩预设工坊';
-const EXTENSION_VERSION = '2.98.60';
+const EXTENSION_VERSION = '2.98.62';
 const RUNTIME_ID = 'TH-script--🧩预设工坊（GitHub 扩展）--2f53f6af-3c9e-4c71-bc52-9f635be25300';
 const LEGACY_IFRAME_PREFIX = 'TH-script--🧩预设工坊';
 const EXTENSION_FOLDER_NAME = 'ST-Preset-Workshop';
@@ -282,6 +282,8 @@ function buildRuntimeDocument() {
   const parentJqueryUrl = appendRuntimeVersion(new URL('../bridge/parent-jquery.js', import.meta.url).href);
   const predefineUrl = appendRuntimeVersion(new URL('../bridge/predefine.js', import.meta.url).href);
   const workshopUrl = appendRuntimeVersion(new URL('./workshop-v3.02.js', import.meta.url).href);
+  /* 柏宝箱整组拖拽增强：必须排在 workshop 之后，才能在它建好面板后补上分组拖动能力。 */
+  const groupStitchDragUrl = appendRuntimeVersion(new URL('./group-stitch-drag.js', import.meta.url).href);
   const snapshotOnlyUrl = appendRuntimeVersion(new URL('./snapshot-only.js', import.meta.url).href);
   const presetContentEditorUrl = appendRuntimeVersion(new URL('./preset-content-editor.js', import.meta.url).href);
   const worldbookStitchUrl = appendRuntimeVersion(new URL('./worldbook-stitch-test3.js', import.meta.url).href);
@@ -346,7 +348,8 @@ ${snapshotOnly ? '' : `<script>
 ${snapshotOnly ? `<script type="module" src="${snapshotOnlyUrl}"></script>` : `<script type="module" src="${presetContentEditorUrl}"></script>
 <script type="module" src="${worldbookSnapshotsUrl}"></script>
 <script type="module" src="${sharedFavoritesUrl}"></script>
-<script type="module" src="${workshopUrl}"></script>`}
+<script type="module" src="${workshopUrl}"></script>
+<script type="module" src="${groupStitchDragUrl}"></script>`}
 </body>
 </html>`;
 }
