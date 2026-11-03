@@ -1,0 +1,39 @@
+name: Apply group drop position patch
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/patch-group-drop.mjs'
+      - '.github/workflows/apply-group-drop.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Patch workshop bundle
+        run: node scripts/patch-group-drop.mjs
+
+      - name: Syntax check
+        run: node --check dist/workshop-v3.02.js
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- dist/workshop-v3.02.js; then
+            echo "没有变化，跳过提交"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/workshop-v3.02.js
+          git commit -m "fix: 分组拖动 before/after 按位置插入（V2.98.12）"
+          git push
